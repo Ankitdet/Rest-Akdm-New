@@ -4,7 +4,7 @@
     
     
     <appender name="CustomDailyRollingAppender" class="com.test.ws.utils.CustodianDailyRollingFileAppender">
-       <param name="File" value="/var/log/neox/neoxems/logs/neoxems_new.log" />
+       <param name="File" value="xboxlive.log" />
        <param name="DatePattern" value="'.'yyyy-MM-dd" />
        <param name="MaxNumberOfDays" value="2"/>
        <layout class="org.apache.log4j.PatternLayout">
