@@ -1,34 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
-<log4j:configuration xmlns:log4j = "http://jakarta.apache.org/log4j/" debug = "false">
-    
-    
-    <appender name="CustomDailyRollingAppender" class="com.test.ws.utils.CustodianDailyRollingFileAppender">
-       <param name="File" value="xboxlive.log" />
+<!DOCTYPE log4j:configuration PUBLIC "-//log4j/log4j Configuration//EN" "log4j.dtd">
+ 
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+ 
+    <appender name="RollingAppender" class="org.apache.log4j.DailyRollingFileAppender">
+       <param name="File" value="app.log" />
        <param name="DatePattern" value="'.'yyyy-MM-dd" />
-       <param name="MaxNumberOfDays" value="2"/>
        <layout class="org.apache.log4j.PatternLayout">
-          <param name="ConversionPattern" value="%m%n"/>          
+          <param name="ConversionPattern" value="[%p] %d %c %M - %m%n"/>          
        </layout>
     </appender>
-   
-    
-    <category name = "com.test.ws">
-        <priority value = "trace"/>
-    </category>
-    <!-- category name = "org.apache.catalina">
-        <priority value = "error"/>
-    </category-->
-    
-    <category name = "org.hibernate">
-        <priority value = "debug"/>
-    </category>
-    
-    <root>
-        <priority value = "all"/>
-        <appender-ref ref = "CustomDailyRollingAppender"/>
+     <root>
+        <priority value="DEBUG"/>
+        <appender-ref ref="RollingAppender" />
     </root>
-</log4j:configuration>
+     
+</log4j:configuration>  
 
 
 <!-- 

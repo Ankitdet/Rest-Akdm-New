@@ -9,10 +9,13 @@ import javax.servlet.ServletContextListener;
 
 import com.test.ws.exception.BusinessException;
 import com.test.ws.logger.Logger;
+
 import org.apache.log4j.LogManager;
+import org.apache.log4j.PropertyConfigurator;
 import org.apache.log4j.xml.DOMConfigurator;
 
 import com.test.ws.logger.Log4jLogger;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -29,26 +32,14 @@ public class ContextListener implements ServletContextListener{
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
 
-		/*System.out.println("Initializing Logger.....");
+		System.out.println("Initializing Logger.....");
 		String contextPath = sce.getServletContext().getRealPath("");
 
-		org.apache.log4j.Logger logger = null;
 		ServletContext servletContext = sce.getServletContext();
 		String log4jFile = servletContext.getInitParameter("log4jFileName");
 		System.out.println("log4j configuration file:'" + log4jFile + "'");
-
-		DOMConfigurator.configure(contextPath + File.separator + log4jFile);
-		logger = LogManager.getLogger("MyApplication");
-
-		if (logger == null) {
-			try {
-				throw new Exception("Failed to get Logger");
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}
-		Log4jLogger.setLogger(logger);*/
+		String fullPath = contextPath + File.separator + log4jFile;
+		PropertyConfigurator.configure(fullPath);
 		initilizeTokenList();
 	}
 	private void initilizeTokenList() {
