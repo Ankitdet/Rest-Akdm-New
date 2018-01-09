@@ -7,6 +7,9 @@
 -- Server version: 5.5.40-36.1-log
 -- PHP Version: 5.6.30
 
+create database xboxlive_akdm;
+use xboxlive_akdm;
+
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
