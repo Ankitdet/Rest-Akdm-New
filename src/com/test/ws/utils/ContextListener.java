@@ -29,7 +29,7 @@ public class ContextListener implements ServletContextListener{
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
 
-		System.out.println("Initializing Logger.....");
+		/*System.out.println("Initializing Logger.....");
 		String contextPath = sce.getServletContext().getRealPath("");
 
 		org.apache.log4j.Logger logger = null;
@@ -48,7 +48,7 @@ public class ContextListener implements ServletContextListener{
 				e.printStackTrace();
 			}
 		}
-		Log4jLogger.setLogger(logger);
+		Log4jLogger.setLogger(logger);*/
 		initilizeTokenList();
 	}
 	private void initilizeTokenList() {
