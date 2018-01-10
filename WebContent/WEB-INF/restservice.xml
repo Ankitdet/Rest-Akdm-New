@@ -7,9 +7,6 @@
         http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
         http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd">
 
-    <import resource="classpath:META-INF/cxf/cxf.xml" />
-    <import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
-
     <bean class="com.test.ws.services.rest.RestServices" id="RestPerson" />
     <bean id='jacksonProvider' class='com.test.ws.utils.JacksonJaxbJsonProvider'></bean>
     <bean id="MyInterceptor" class="com.test.ws.utils.WebServiceRequestInterceptor"/>
