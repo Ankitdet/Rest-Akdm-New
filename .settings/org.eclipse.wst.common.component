@@ -2,6 +2,8 @@
     <wb-module deploy-name="Rest-Akdm">
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
+        <wb-resource deploy-path="/lib" source-path="/WebContent/WEB-INF/lib"/>
+        <wb-resource deploy-path="/ws" source-path="/WebContent/WEB-INF/lib/ws"/>
         <property name="java-output-path" value="/Rest-Akdm/build/classes"/>
         <property name="context-root" value="Rest-Akdm"/>
     </wb-module>
