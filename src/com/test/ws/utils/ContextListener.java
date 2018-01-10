@@ -1,23 +1,22 @@
 package com.test.ws.utils;
 
 import java.io.File;
+import java.sql.Driver;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+import java.util.Enumeration;
 import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-import com.test.ws.exception.BusinessException;
-import com.test.ws.logger.Logger;
-
-import org.apache.log4j.LogManager;
 import org.apache.log4j.PropertyConfigurator;
-import org.apache.log4j.xml.DOMConfigurator;
-
-import com.test.ws.logger.Log4jLogger;
-
 import org.hibernate.Query;
 import org.hibernate.Session;
+
+import com.test.ws.exception.BusinessException;
+import com.test.ws.logger.Logger;
 
 
 public class ContextListener implements ServletContextListener{
@@ -26,8 +25,25 @@ public class ContextListener implements ServletContextListener{
 
 	@Override
 	public void contextDestroyed(ServletContextEvent arg0) {
-		// TODO Auto-generated method stub
-	}
+		  ClassLoader cl = Thread.currentThread().getContextClassLoader();
+          // Loop through all drivers
+          Enumeration<Driver> drivers = DriverManager.getDrivers();
+          while (drivers.hasMoreElements()) {
+              Driver driver = drivers.nextElement();
+              if (driver.getClass().getClassLoader() == cl) {
+                  // This driver was registered by the webapp's ClassLoader, so deregister it:
+                  try {
+                      System.out.println("Deregistering JDBC driver {}" + driver);
+                      DriverManager.deregisterDriver(driver);
+                  } catch (SQLException ex) {
+                      System.out.println("Error deregistering JDBC driver {}" + ex);
+                  }
+              } else {
+                  // driver was not registered by the webapp's ClassLoader and may be in use elsewhere
+                  System.out.println("Not deregistering JDBC driver {} as it does not belong to this webapp's ClassLoader" + driver);
+              }
+          }
+      }
 
 	@Override
 	public void contextInitialized(ServletContextEvent sce) {
